@@ -13,21 +13,23 @@ export default function NftCard({ metadata, symbol, token_address, token_id }){
     async function closeModal() {
         setIsloading(true)
         let starknet = await connect({ showList: false })
-        //setIsOpen(false)
-        await starknet.enable()
-        window.starknet_ = starknet;
-        if(starknet.isConnected){
-            const gwcontract_address = "0xcDAa2Db7F970058cd373d5E68c10136ebAcF4160";
-            let gwcontract = new web3.eth.Contract(gateway.abi, gwcontract_address); 
-            let nftcontract = new web3.eth.Contract(nft.abi, token_address); 
-            console.log(starknet.selectedAddress)
-            const { ethereum } = window;
-            const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-            await nftcontract.methods.approve(gwcontract_address, token_id).send({ from: accounts[0] })
-            await gwcontract.methods.bridgeToStarknet(token_address, token_id, starknet.selectedAddress, window.web3.utils.toWei('0.01'),tokeAdd.address).send({ from: accounts[0] })
-            setFinal(true)
-            setIsloading(false)
-            return;
+        if(starknet){
+            //setIsOpen(false)
+            await starknet.enable()
+            window.starknet_ = starknet;
+            if(starknet.isConnected){
+                const gwcontract_address = "0xcDAa2Db7F970058cd373d5E68c10136ebAcF4160";
+                let gwcontract = new web3.eth.Contract(gateway.abi, gwcontract_address); 
+                let nftcontract = new web3.eth.Contract(nft.abi, token_address); 
+                console.log(starknet.selectedAddress)
+                const { ethereum } = window;
+                const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+                await nftcontract.methods.approve(gwcontract_address, token_id).send({ from: accounts[0] })
+                await gwcontract.methods.bridgeToStarknet(token_address, token_id, starknet.selectedAddress, window.web3.utils.toWei('0.01'),tokeAdd.address).send({ from: accounts[0] })
+                setFinal(true)
+                setIsloading(false)
+                return;
+            }
         }
     }
   
