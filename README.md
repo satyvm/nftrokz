@@ -2,8 +2,8 @@
 ### Your Bear 🐻 Market Partner
 
 ## Links
-[Contract](https://github.com/harshu4/NFTRokz-Contract)
-[Devfolio Project](https://devfolio.co/projects/nftrokz-347c)
+- [Contract](https://github.com/harshu4/NFTRokz-Contract)
+- [Devfolio Project](https://devfolio.co/projects/nftrokz-347c)
 
 
 ## Introduction
